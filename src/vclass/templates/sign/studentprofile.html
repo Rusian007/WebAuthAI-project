@@ -1,0 +1,46 @@
+{% extends 'sign/index.html' %}
+{% load static %}
+
+{% block styles %}
+    <title>User | profile</title>
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock %}
+
+{% block content %}
+
+    
+
+    <div class="container">
+        <div class="bg-dark">
+            <div class="picture">
+                <img src="{{ student.image.url }}" alt="some picture">
+            </div>
+            <div class="name">
+                <h1>{{ student.First_name }} {{ student.Last_name }}</h1>
+            </div>
+        </div>
+    </div>
+
+    <div  class="body">
+        <div class="flex-column">
+           <b><label for="name">Username</label></b> 
+            <p >jesse</p>
+        </div>
+        <div class="flex-column">
+            <b><label for="fullname">Full Name</label></b>
+            <p style="text-align: start;" >{{ student.First_name }} {{ student.Last_name }}</p>
+        </div>
+        <div class="flex-column">
+            
+        <b><label for="email">Email</label></b>
+        <p>{{ student.Email_address }}</p>
+        </div>
+        <div class="flex-column">
+            <a href="{% url 'portf:student-update' student.pk %}" class="button">Edit profile</a>
+        <a href="{% url 'portf:student-home' %}" class="button">Return</a>
+        </div>
+        
+    </div>
+
+
+{% endblock %}

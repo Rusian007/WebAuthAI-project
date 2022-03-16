@@ -1,0 +1,52 @@
+{% extends 'sign/index.html' %}
+{% load static %}
+
+{% block styles %}
+<title>User | profile</title>
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="bg-dark">
+        <div class="picture">
+            <img src="{{ student.image.url }}" alt="some picture">
+        </div>
+        <div class="name">
+            <h1>{{ student.First_name }} {{ student.Last_name }}</h1>
+        </div>
+    </div>
+</div>
+
+<form action="" method="post" enctype="multipart/form-data" >
+    {% csrf_token %}
+    <div class="body">
+        <div class="flex-column">
+            <b><label for="name">Username</label></b>
+            <p>jesse</p>
+        </div>
+        <div class="flex-column">
+            <b><label for="fullname">Full Name</label></b>
+            <p>{{ form.First_name }} {{ form.Last_name }}</p>
+        </div>
+        <div class="flex-column">
+            <b><label for="Email_address">Email</label></b>
+            <p> {{ form.Email_address }} </p>
+            {{ form.Email_address.errors }}
+        </div>
+        <div class="flex-column">
+            <b><label for="image">Profile picture</label></b>
+            <p> {{ form.image }} </p>
+            {{ form.image.errors }}
+        </div>
+        <div class="flex-column">
+            <a href="{% url 'portf:student-profile' %}" class="button">Cancel</a>
+            <input class="button" type="submit" value="Update">
+        </div>
+
+    </div>
+
+
+</form>
+{% endblock %}

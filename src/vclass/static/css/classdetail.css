@@ -1,0 +1,22 @@
+.navbar{
+    padding-top: 14px !important;
+    margin-bottom: 20px;
+}
+.box{
+   padding:20px;
+   border: 10px solid rgb(201, 238, 255);
+   border-radius: 5px;
+   height: 300px;
+   
+}
+
+.box p{
+    margin-bottom: 150px;
+    font-size: 13px;
+}
+.box a{
+    border-radius: 5px;
+    border: 2px solid black;
+    padding: 5px;
+    
+}

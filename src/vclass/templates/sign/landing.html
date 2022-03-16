@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {% load static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Home - Brand</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aclonica">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <link rel="stylesheet"  href="{%  static  'css/landing.min.css'  %}">
+
+</head>
+
+<body>
+    
+    <div class="navbar">
+
+        <div class="navbar-brand"> <a style="text-decoration: none;" href="#">Classroom</a> </div>
+
+        <nav>
+            <a href="{% url 'portf:register' %}">Sign Up</a>
+            <a href="{% url 'portf:login' %}">Login</a>
+        </nav>
+
+    </div>
+
+    <div class="hero">
+        
+        <div class="left">
+            <div class="head">
+                <h1>Virtual Classroom</h1>
+                <p>Join your virtual classroom today ! Sign up for free</p>
+            </div>
+            <div class="sign-up">
+                <a href="{% url 'portf:register' %}">Sign Up</a>
+            </div>
+        </div>
+
+        <div class="right">
+            <img src="{% static 'css/img/illus.svg' %}" alt="some illustration">
+        </div>
+    </div>
+
+    <div class="features">
+        <div class="f-1">
+            <i class="fi-xwlux5-lightning-wide"></i>
+            <h4>It is fast and easy</h4>
+        </div>
+
+        <div class="f-1">
+            <i class="fi-xnsux4-computer-desktop-solid"></i>
+            <h4>Create Classroom or Join at a press of a button</h4>
+        </div>
+
+        <div class="f-1">
+            <i class="fi-xwlux4-smartphone-wide"></i>
+            <h4>Comes with an Android app</h4>
+        </div>
+    </div>
+    <script defer src="https://friconix.com/cdn/friconix.js"> </script>
+</body>
+
+</html>

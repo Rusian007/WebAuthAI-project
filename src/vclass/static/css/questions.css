@@ -1,0 +1,105 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap');
+
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: Poppins;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px;
+}
+
+.navbar h1{
+    font-weight: 700;
+}
+.navbar button{
+    background-color: rgb(235, 235, 235);
+    border: none;
+    border-radius: 10px;
+    font-weight: 200;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-family: 'Open Sans Condensed';
+    padding: 0px 14px;
+    transition: .6s; 
+    text-decoration: none;
+}
+
+.navbar button:hover{
+  background-color: rgb(63, 63, 63);
+  color: white;
+}
+
+.nav-separator{
+    border-top: none;
+    border-bottom: 5px solid rgb(43, 206, 255);
+}
+
+.container{
+  padding: 40px;
+  display: flex;
+  justify-content: space-between;
+  flex-flow: row wrap;
+  
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  background-color: rgb(230, 230, 230);
+  width: 630px;
+  padding: 27px;
+  border: 1px solid rgb(71, 212, 255);
+  border-radius: 10px;
+  position: relative;
+  height: 330px;
+  overflow: auto;
+  
+}
+.card .name{
+  font-size: 23px;
+  color: rgb(87, 87, 87);
+  font-weight: 400;
+}
+.card hr{
+  border-bottom: none;
+  border-left: none;
+  border-right: none;
+  border-top: 2px solid rgb(71, 212, 255);
+  width: 60%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+h3 span{
+  color: rgb(247, 78, 78);
+  margin-right: 5px;
+}
+
+.namePlate{
+  position: absolute;
+  top: 40px;
+  left: 150px;
+}
+
+.smallbox{
+  padding: 5px 15px;
+  background-color: rgb(247, 78, 78);
+  color: white;
+  margin-top: 4px;
+  font-size: 14px;
+  display: inline-block;
+}
+
+img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}

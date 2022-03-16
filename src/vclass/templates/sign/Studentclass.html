@@ -1,0 +1,23 @@
+{% extends 'sign/index.html' %}
+
+{% block style %}
+<title>Classroom | Class</title>
+{% endblock %}
+
+{% block content %}
+
+<h2> {{ object.Class_name }}</h2>
+<p>{{ object.Subject }}</p>
+
+{% if not metarials %}
+<ul>
+    <li>No activity Yet</li>
+</ul>
+{% else %}
+<ul>
+    {% for work in metarials %}
+    <li>{{ work.Description }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,567 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+:root {
+  --outlinecolor: linear-gradient(90deg, rgba(54,54,54,1) 0%, rgba(36,36,36,1) 50%, rgba(0,0,0,1) 100%);
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+
+body{
+  width: 100%;
+  background-color: rgb(243, 243, 243);}
+
+/* Navbar flexbox for flexing- Edit for class and signup button */
+.navbar{
+  
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem;
+  
+  
+}
+
+.flex-wrap{
+  display: flex;
+  justify-content: space-between;
+}
+.sign-up a{
+  margin-right: 5px;
+}
+.sign-up button{
+  margin-left: 5px;
+}
+
+.center{
+  margin: 4px 14px 0px 5px;
+}
+
+/* Navbar Ends */
+
+.show-btn{
+  background-color: white;
+   border: none;
+   outline: none;
+   padding: 8px 16px 10px 16px;
+   color: rgb(0, 0, 0);
+   font-size: 15px;
+   font-weight: 700;
+   border-radius: 20px;
+   cursor: pointer;
+   transition: 0.3s;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+}
+.show-btn:hover{
+  background-color: rgb(223, 223, 223);
+}
+ .container{
+  position: absolute;
+  top: 8%;
+  right: 0px;
+  transform: translate(-10%, -10%);
+  
+}
+
+input[type="checkbox"]{
+  display: none;
+}
+.container{
+  display: none;
+  background: #fff;
+  width: 410px;
+  padding: 30px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+#show:checked ~ .container{
+  display: block;
+}
+.container .close-btn{
+  position: absolute;
+  right: 20px;
+  top: 15px;
+  font-size: 18px;
+  cursor: pointer;
+}
+.container .close-btn:hover{
+  color: #3498db;
+}
+.container .text{
+  font-size: 35px;
+  font-weight: 600;
+  text-align: center;
+}
+.container form{
+  margin-top: -20px;
+}
+.container form .data{
+  height: 45px;
+  width: 100%;
+  margin: 40px 0;
+}
+form .data label{
+  font-size: 18px;
+}
+form .data input{
+  height: 100%;
+  width: 100%;
+  padding-left: 10px;
+  font-size: 17px;
+  border: 1px solid silver;
+}
+form .data input:focus{
+  border-color: #3498db;
+  border-bottom-width: 2px;
+}
+
+form .btn{
+  margin: 30px 0;
+  height: 45px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+form .btn .inner{
+  height: 100%;
+  width: 300%;
+  position: absolute;
+  left: -100%;
+  z-index: -1;
+  background: -webkit-linear-gradient(right, #56d8e4, #9f01ea, #56d8e4, #9f01ea);
+  transition: all 0.4s;
+}
+form .btn:hover .inner{
+  left: 0;
+}
+form .btn button{
+  height: 100%;
+  width: 100%;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+input[type="submit"]{
+  height: 100%;
+  width: 100%;
+  border: none;
+  background: none;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+form .Cancel{
+  text-align: center;
+}
+form .Cancel{
+  color: #3498db;
+  text-decoration: none;
+}
+form .Cancel a:hover{
+  text-decoration: none;
+}
+
+/* btn2 for rigntbar */
+.menu-btn2 i.fa-times{
+  opacity: 0;
+}
+.menu-btn2{
+  position: absolute;
+  top:120px;
+  right:10px;
+  background: black;
+  color: #fff;
+  height: 45px;
+  width: 45px;
+  z-index: 199;
+  border: 1px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+#btn2:checked ~ .right-bar{
+  visibility:visible;
+}
+#btn2:checked ~ .menu-btn2{
+  right: 19rem;
+}
+#btn2:checked ~ .menu-btn2 i.fa-times{
+  opacity: 1;
+  transform: rotate(-180deg);
+}
+#btn2:checked ~ .menu-btn2 i.fa-arrow-left{
+  opacity: 0;
+  transform: rotate(180deg);
+}
+.menu-btn2 i{
+  position: absolute; 
+  font-size: 20px;
+  transition: all 0.3s ease;
+}
+
+
+
+.wrapper{
+  height: 100%;
+  width: 300px;
+  position: relative;
+  z-index: 999;
+}
+.wrapper .menu-btn{
+  position: absolute;
+  left: 20px;
+  top: 10px;
+  background: black;
+  color: #fff;
+  height: 45px;
+  width: 45px;
+  z-index: 9999;
+  border: 1px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+#btn:checked ~ .menu-btn{
+  left: 285px;
+}
+
+.wrapper .menu-btn i{
+  position: absolute; 
+  font-size: 20px;
+  transition: all 0.3s ease;
+}
+.wrapper .menu-btn i.fa-times{
+  opacity: 0;
+}
+#btn:checked ~ .menu-btn i.fa-times{
+  opacity: 1;
+  transform: rotate(-180deg);
+}
+#btn:checked ~ .menu-btn i.fa-bars{
+  opacity: 0;
+  transform: rotate(180deg);
+}
+#sidebar{
+  position: fixed;
+  background: black;
+  height: 100%;
+  width: 270px;
+  overflow: hidden;
+  left: -270px;
+  transition: all 0.3s ease;
+}
+#btn:checked ~ #sidebar{
+  left: 0;
+}
+#sidebar .title{
+  line-height: 65px;
+  text-align: center;
+  background:black;
+  font-size: 25px;
+  font-weight: 600;
+  color: #f2f2f2;
+  border-bottom: 1px solid #222;
+}
+#sidebar .list-items{
+  position: relative;
+  background: black;
+  width: 100%;
+  height: 100%;
+  list-style: none;
+}
+#sidebar .list-items li{
+  padding-left: 40px;
+  line-height: 50px;  
+  
+  transition: all 0.3s ease;
+}
+#sidebar .list-items li a:hover{
+  
+  color: #3498db;
+}
+#sidebar .list-items li:first-child{
+  border-top: none;
+}
+#sidebar .list-items li a{
+  color: #f2f2f2;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 500;
+  height: 100%;
+  width: 100%;
+  display: block;
+}
+#sidebar .list-items li a i{
+  margin-right: 20px;
+}
+#sidebar .list-items .icons{
+  width: 100%;
+  height: 40px;
+  text-align: center;
+  position: absolute;
+  bottom: 100px;
+  line-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#sidebar .list-items .icons a{
+  height: 100%;
+  width: 40px;
+  display: block;
+  margin: 0 5px;
+  font-size: 18px;
+  color: #f2f2f2;
+  background:black;
+  border-radius: 5px;
+  border: 1px solid black;
+  transition: all 0.3s ease;
+}
+#sidebar .list-items .icons a:hover{
+  background: black;
+}
+.list-items .icons a:first-child{
+  margin-left: 0px;
+}
+.class{
+  z-index: 999;
+}
+
+.classes{
+  position: static;
+  padding: 25px 17rem 10px 7rem;
+  margin-right: 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-flow: row wrap;
+  flex-basis: 50%;
+}
+
+.card {
+  /* Add shadows to create the "card" effect */
+  
+  position: relative;
+  width: 330px;
+  height: 220px;
+  /* background-color: rgb(255, 255, 255); */
+  border-radius: 10px;
+  
+  margin: 20px 5px;
+}
+
+
+/* On mouse-over, add a deeper shadow */
+.top:hover {
+  background:      linear-gradient(45deg, #8eeeff,#ff72a1)    ;
+  
+}
+
+.top{
+  position: absolute;
+  width: 99%;
+  height: 99%;
+  background:      linear-gradient(45deg, #00B3D1, #ED7CA1)    ;  
+  left: 50%;
+top: 50%;
+border-radius: 10px;
+transform: translate(-50%, -50%);
+box-shadow: 10px 10px 6px 6px rgb(219, 219, 219); 
+transition: all 0.3s ease;
+}
+
+.container-card{
+  position: absolute;
+	width: 93%;
+  height: 92%;
+  border-radius: 10px;
+  padding: 25px 20px;
+  background-color: rgb(255, 255, 255);
+  margin: 0 auto;
+  left: 50%;
+top: 50%;
+transform: translate(-50%, -50%);
+
+}
+/* Add some padding inside the card container */
+.container-card .count{
+  margin-top: 3px;
+  font-size: 10px;
+}
+.container-card p{
+  margin-top: 15px;
+  font-size: 15px;
+}
+
+.container-card h5{ text-transform: uppercase; }
+.container-card h4 {
+  margin-bottom: 3px;
+  font-weight: normal;
+	text-transform: uppercase;
+	font-size: 20px;
+}
+.container-card a{
+  position: absolute;
+	text-decoration: none;
+  color: white;
+  background-color: tomato;
+  border-radius: 50%;
+  padding: 27px;
+  top: 80%;
+  left: 37%;
+}
+.container-card a:hover{
+  background-color: rgb(201, 78, 57);
+}
+/* right-bar css */
+
+.right-bar{
+  visibility: hidden;
+  color: white;
+  z-index: 15;
+  position: absolute;
+  right:0px;
+  background: var(--outlinecolor);
+  width: 18rem;
+  height: 100%;
+  padding-top: 10px;
+  margin-left: 2px;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 8px 7px rgb(189, 189, 189);
+}
+
+.bar-image{
+  overflow: hidden;
+  height: 100px; width: 100px;
+  border-radius: 50%;
+  text-align: center;
+}
+.bar-image img{
+  margin-left: auto;
+  margin-right: auto;
+  height: 100%;
+}
+.avater{
+  display: flex;
+  justify-content: space-between;
+  padding: 2px;
+  
+}
+.hr{
+  
+  text-align: center;
+  width: 80%;
+  color: #c9c9c9;
+
+  margin: 60px auto;
+}
+.hr hr{
+  border-top: 0px;
+  border-bottom: 1px solid;
+}
+.records{
+  display: flex;
+  justify-content: space-between;
+}
+.student-count h5{ margin-bottom: 9px; }
+.total-class h5 { margin-bottom: 9px; }
+.student-count h4{
+  border-left: 3px solid rgb(255, 158, 47);
+  padding: 2px;
+  padding-left: 6px;
+}
+.total-class h4{
+  border-left: 3px solid rgb(255, 14, 14);
+  padding: 2px;
+  padding-left: 6px;
+
+}
+/* right bar ends */
+
+
+
+
+.content{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  color: black;
+  z-index: -1;
+  width: 100%;
+  text-align: center;
+}
+.logo a{
+    color:rgb(44, 44, 44);
+    font-size: 30px;
+    font-weight: 700;
+  }
+.content .header{
+  font-size: 50px;
+  font-weight: 700;
+}
+.content p{
+  font-size: 20px;
+  font-weight: 700;
+}
+
+
+
+
+.sign-up button{
+  background-color: white;
+   border: none;
+   outline: none;
+   padding: 8px 16px;
+   color: rgb(0, 0, 0);
+   font-size: 15px;
+   font-weight: 700;
+   border-radius: 20px;
+   box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+   cursor: pointer;
+   transition: 0.3s;
+}
+.sign-up button:hover{
+  background-color: rgb(223, 223, 223);
+}
+
+
+.message{
+	position: absolute;
+	background: green;
+	color: white;
+	padding: 20px;
+	top: 20px;
+	right:0px;
+	transition: .7s;
+}
+
+#button{
+	margin-top: 10px;
+  background-color: grey;
+  color: white;
+  padding: 10px;
+  border: none;
+}
+#button:hover{
+  background-color: rgb(109, 109, 109);
+}
+.hide{
+  display: none;
+}

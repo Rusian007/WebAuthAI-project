@@ -1,0 +1,75 @@
+{% extends 'sign/class.html' %}
+    {% load static %}
+    
+    {% block style %}
+    <title>Classroom | task</title>
+    {% endblock %}
+
+  <!-- Navbar -->
+  {% block content %}
+  <nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <div class="container-fluid">
+      {% if request.user.is_Student %}
+      <a class="btn btn-secondary btn-sm" href="{% url 'portf:student-home' %}">Go Back</a>
+      {% endif %}
+      {% if request.user.is_Teacher %}
+      <a class="btn btn-secondary btn-sm" href="{% url 'portf:teacher-home' %}">Go Back</a>
+      {% endif %}
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item">
+            {% if request.user.is_Student %}
+            <a class="nav-link " id="Class" aria-current="page" href="{{ object.get_absolute_url }}">Class</a>
+            {% else %}
+            <a class="nav-link " id="Class" aria-current="page" href="{% url 'portf:teacher-class-view' object.id %}">Class</a>
+            {% endif %}
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="Students" href="{% url 'portf:people' object.id %}">Students</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" id="Tasks" href="{% url 'portf:task' object.id %}">Tasks</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            {% if request.user.is_Teacher %}
+                <a style="color: white;" class="nav-link link-button" href="{% url 'portf:pdf-create' object.id %}">Add New Task <i class="fas fa-plus"></i></a>
+                {% endif %}
+          </li>
+        </ul>
+        
+      </div>
+    </div>
+  </nav>
+  
+
+  <!-- class -->
+  <div class="container">
+    <div class="back my-4 px-3 py-5 rounded-border row">
+      <div class="col-12">
+          {% if not metarials %}
+          <h2 class="text-muted" >No Tasks Yet :)</h2>
+          {% else %}
+        <h2  >All your tasks at a glance !</h2>
+        
+      </div>
+    </div>
+    <div class="row">
+        {% for work in metarials %}
+    <div class="bg-light border border-warning rounded-bottom my-1 ml-2 p-2 col-3 text-center">
+        <h5>{{ work.title }}</h5>
+        <p class="font-italic" >
+            {{ work.Description }}</p>
+    </div>
+    {% endfor %}
+    {% endif %}
+</div>
+
+  </div>
+
+  
+  {% endblock %}

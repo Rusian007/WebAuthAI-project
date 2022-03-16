@@ -1,0 +1,78 @@
+{% extends 'sign/class.html' %}
+{% load static %}
+{% block style %}
+<title>Classroom | People</title>
+{% endblock %}
+
+{% block content %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white">
+  <div class="container-fluid">
+    {% if request.user.is_Student %}
+    <a class="btn btn-secondary btn-sm" href="{% url 'portf:student-home' %}">Go Back</a>
+    {% endif %}
+    {% if request.user.is_Teacher %}
+    <a class="btn btn-secondary btn-sm" href="{% url 'portf:teacher-home' %}">Go Back</a>
+    {% endif %}
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item">
+          {% if request.user.is_Student %}
+          <a class="nav-link " id="Class" aria-current="page" href="{{ object.get_absolute_url }}">Class</a>
+          {% else %}
+          <a class="nav-link " id="Class" aria-current="page"
+            href="{% url 'portf:teacher-class-view' object.id %}">Class</a>
+          {% endif %}
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" id="Students" href="{% url 'portf:people' object.id %}">Students</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="Tasks" href="{% url 'portf:task' object.id %}">Tasks</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          {% if request.user.is_Teacher %}
+          <a style="color: white;" class="nav-link link-button" href="{% url 'portf:pdf-create' object.id %}">Add New
+            Task <i class="fas fa-plus"></i></a>
+          {% endif %}
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+
+<div class="container">
+  <div class="back mt-4 px-3 pt-3 height rounded-border row">
+    <div class="col-12">
+      <h1>{{ object.Class_name }}</h1>
+      <p class="fs-6">{{ object.section }}</p>
+    </div>
+  </div>
+
+  {% if not students %}
+  <div class="row mt-3">
+    <div class="mx-auto custom-border col-10">
+
+      <h5 class="text-muted" style="display: inline;"> No student yet </h5>
+    </div>
+  </div>
+  {% else %}
+  {% for student in students %}
+  <div class="row mt-3">
+    <div class="mx-auto custom-border col-10">
+      <img class=" image img-thumbnail rounded-4" src="{{ student.image.url }}" alt="profile pic">
+      <h5 style="display: inline;">{{ student.First_name }} {{ student.Last_name }}</h5>
+    </div>
+  </div>
+  {% endfor %}
+  {% endif %}
+  {% endblock %}

@@ -1,0 +1,157 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+
+body{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: Roboto;
+    background-size: cover;
+    background-repeat: no-repeat;
+   
+    background-color: rgb(49, 49, 49);
+    
+}
+
+.bg-dark{
+    background:url(img/backback.png);
+    background-color: rgb(233, 233, 233);
+    height: 30vh;
+    position: relative;
+}
+.picture{
+    position: absolute;
+    top: 4rem ;
+    left: 10rem;
+    overflow: hidden;
+  height: 200px; width: 200px;
+  border: 6px solid rgb(88, 88, 88);
+  border-radius: 10px;
+  text-align: center;
+}
+.picture img{
+    height: 200px; width: 200px;
+}
+.name{
+    position: absolute;
+    top: 6rem ;
+    left: 24rem;
+    color: rgb(0, 0, 0);
+}
+.body{
+    background-color: white;
+    padding: 10px;
+    margin-top: 3rem;
+    margin-left: 30rem;
+    margin-right: 20rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    border-radius: 10px;
+    /* box-shadow: 2px 1px 19px 1px rgba(206, 206, 206, 0.75); */
+    width: 45rem;
+}
+.flex-column{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    font-size: large;
+    align-content:flex-end;
+}
+p{
+    color: rgb(0, 91, 211);
+    margin: 0px;
+    padding: 0px;
+}
+.button{
+    font-size: 12px;
+    text-decoration: none;
+    font-weight: bold;
+    border: none;
+    margin: 16px 0px 16px 0px;
+    background:  linear-gradient(45deg, #00B3D1, #ED7CA1) !important;
+    background-color: rgb(197, 197, 197);
+     outline: none;
+     padding: 8px 16px 10px 16px;
+     font-weight: bold;
+     color: rgb(255, 255, 255);
+     border-radius: 4px;
+     cursor: pointer;
+     text-transform: uppercase;
+     transition: 0.3s;
+     /* box-shadow: 5px 10px #b8b8b8; */
+  }
+  .button:hover{
+      background-color: rgb(63, 63, 63) ;
+      color: rgb(224, 224, 224);
+  }
+
+  @media screen and (max-width: 768px) {
+    .picture{
+        height: 150px; width: 150px;
+    }
+    .picture img{
+        height: 150px; width: 150px;
+    }
+    .body{
+        margin-top: 4rem;
+        margin-left: 21rem;
+        margin-right: 2rem;
+    }
+    .name{
+        position: absolute;
+        top: 6rem ;
+        left: 22rem;
+        color: white;
+    }
+  }
+  input[type=text],input[type=email]{
+    border: none;
+    padding: 6px;
+    background-color: rgb(233, 233, 233);
+}
+
+  a{
+      text-decoration: none;
+      
+      font-size: 14px;
+  }
+  input[type='file']::-webkit-file-upload-button {
+    visibility: hidden;}
+  
+  input[type='file']::before{
+    content: 'Select A Picture';
+    display: inline-block;
+    font-size: 15px;
+    color: #fff;
+    color: white;
+    line-height: 40px;
+    background-color: #666666;
+    padding: 0 15px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    display: inline-block;
+    margin-right: -70px;
+    -webkit-transition: all 0.4s ease;
+    -o-transition: all 0.4s ease;
+    -moz-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+    cursor: pointer;
+    white-space: nowrap;
+    
+  }
+  
+  input[type='file']:hover::before {
+    background-color: white;
+    color: black;
+  }
+
+  @media screen and (max-width: 1024px) {
+    .body{
+        width: 35rem;
+        margin-left: 13rem ;
+        margin-right: 10rem;
+    }
+  }

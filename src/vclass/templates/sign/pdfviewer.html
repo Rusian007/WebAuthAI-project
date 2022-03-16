@@ -1,0 +1,288 @@
+<!doctype html>
+
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pdf View</title>
+    <link rel="stylesheet" href="{% static 'css/pdfview.css' %}">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.943/pdf.min.js">
+    </script>
+</head>
+
+<body>
+
+    {% if show %}
+    <span class="notification">
+        <p>Question successfully recorded</p>
+    </span>
+    {% else %}
+    <span>
+
+    </span>
+    {% endif %}
+    <span id="recordStart" class="notification destroy">
+        <p>Recording Started, Speak now!!</p>
+    </span>
+    <span id="recordSend" class="notification destroy">
+        <p>Recording Sent ! :)</p>
+    </span>
+    <span id="recordStop" class="notification2 destroy">
+        <p>Recording Stopped !</p>
+    </span>
+
+    <div class="nav">
+        <div id="navigation_controls">
+            <button id="zoom_in">+</button>
+            <button id="go_previous">Previous </button>
+            <input id="current_page" value="1" type="number" />
+            <button id="go_next">Next</button>
+            <button id="zoom_out">-</button>
+
+        </div>
+
+        <div class="nav-back">
+            <button onclick="window.location= '{{ metarial.get_absolute_url }}'" class="btn"> Return </button>
+        </div>
+
+    </div>
+
+
+    <div class="container">
+        <div id="my_pdf_viewer">
+            <div id="canvas_container">
+                <canvas id="pdf_renderer"></canvas>
+            </div>
+        </div>
+
+        <div class="right-bar">
+            <h2>Ask A Question</h2>
+
+            <label for="question"> Write your question here </label>
+            <form action="{% url 'portf:written' metarial.id %}" method="post">
+                {% csrf_token %}
+                {{ form.Written }}
+
+                <div class="flex-box">
+                    {{ form.Tag }}
+                    <input class="btn" type="submit" value="Submit">
+                </div>
+            </form>
+
+            <button class="btn-2" id="button"> Add current page </button>
+            <span class="signal hide"> current page added :) </span>
+
+            <h2>Voice Recorded Question</h2>
+            <div class="flex-box">
+                <button onclick="recordStart()" class="btn">Start</button>
+                <audio controls id="audio" src="#">
+
+                </audio>
+                <button onclick="recordStop()" class="btn">Stop</button>
+            </div>
+            <button id="send_voice" onclick="sendRecording()" class="btn-2 destroy">Send Recording</button>
+
+            
+            <!-- <h2 style="margin: 10px 2px ;">Want to add details?</h2>
+            <form action="{% url 'portf:annote' metarial.id %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" id="current_page_form" name="page" value="1" >
+                <input class="btn-2" type="submit" value="Annotation">
+            </form> -->
+            <!-- <a  style="text-decoration: none; text-align: center; font-size: 13px;" class="btn-2" href="{% url 'portf:annote' metarial.id %}">Annotation</a> -->
+        </div>
+    </div>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+
+
+    <script>
+        var mypdf = "{{ metarial.Pdf.url }}";
+        var myState = {
+            pdf: null,
+            currentPage: 1,
+            zoom: 1
+        }
+
+        pdfjsLib.getDocument(mypdf).then((pdf) => {
+
+            myState.pdf = pdf;
+            render();
+
+        });
+
+        function render() {
+            myState.pdf.getPage(myState.currentPage).then((page) => {
+
+                var canvas = document.getElementById("pdf_renderer");
+                var ctx = canvas.getContext('2d');
+
+                var viewport = page.getViewport(myState.zoom);
+
+                canvas.width = viewport.width;
+                canvas.height = viewport.height;
+
+                page.render({
+                    canvasContext: ctx,
+                    viewport: viewport
+                });
+            });
+        }
+
+        document.getElementById('go_previous').addEventListener('click', (e) => {
+            if (myState.pdf == null || myState.currentPage == 1)
+                return;
+            myState.currentPage--;
+            document.getElementById("current_page").value = myState.currentPage;
+            render();
+        });
+
+        document.getElementById('go_next').addEventListener('click', (e) => {
+            if (myState.pdf == null || myState.currentPage > myState.pdf._pdfInfo.numPages)
+                return;
+            myState.currentPage++;
+            document.getElementById("current_page").value = myState.currentPage;
+            render();
+        });
+
+        document.getElementById('current_page').addEventListener('keypress', (e) => {
+            if (myState.pdf == null) return;
+
+            // Get key code
+            var code = (e.keyCode ? e.keyCode : e.which);
+
+            // If key code matches that of the Enter key
+            if (code == 13) {
+                var desiredPage =
+                    document.getElementById('current_page').valueAsNumber;
+
+                if (desiredPage >= 1 && desiredPage <= myState.pdf._pdfInfo.numPages) {
+                    myState.currentPage = desiredPage;
+                    document.getElementById("current_page").value = desiredPage;
+                    render();
+                }
+            }
+        });
+
+        document.getElementById('zoom_in').addEventListener('click', (e) => {
+            if (myState.pdf == null) return;
+            myState.zoom += 0.3;
+            render();
+        });
+
+        document.getElementById('zoom_out').addEventListener('click', (e) => {
+            if (myState.pdf == null) return;
+            myState.zoom -= 0.3;
+            render();
+        });
+    </script>
+
+
+    <script>
+        var item = document.getElementById("button");
+        item.onclick = function () {
+            const input = document.getElementById('current_page');
+            const pagenum = input.value;
+            var inputfield = document.getElementById("value");
+            inputfield.value = pagenum;
+            inputfield.classList.remove("hide");
+
+            var signal = document.querySelector('.signal');
+            signal.classList.remove("hide");
+        }
+    </script>
+
+    <script>
+
+        let device = navigator.mediaDevices.getUserMedia({ audio: true });
+        let chunks = [];
+        let recorder;
+
+        function recordStart() {
+            var recordStart = document.getElementById('recordStart');
+            var recordStop = document.getElementById('recordStop');
+
+            recordStop.classList.add("destroy");
+            recordStart.classList.remove("destroy");
+
+            chunks.splice(0, chunks.length);
+            recorder.start(500);
+        }
+        function recordStop() {
+            var recordStart = document.getElementById('recordStart');
+            var recordStop = document.getElementById('recordStop');
+            var button = document.getElementById('send_voice');
+            button.classList.remove("destroy");
+
+            recordStart.classList.add("destroy");
+            recordStop.classList.remove("destroy");
+            recorder.stop(500)
+        }
+
+
+        device.then(stream => {
+            recorder = new MediaRecorder(stream);
+
+            recorder.ondataavailable = e => {
+                chunks.push(e.data);
+
+                if (recorder.state == 'inactive') {
+                    let blob = new Blob(chunks, { type: 'audio/wav' });
+                    let url = "#";
+                    var audiox = document.getElementById("audio")
+                    audiox.src = url
+
+                    url = URL.createObjectURL(blob);
+                    var audiox = document.getElementById("audio")
+                    audiox.src = url
+                    console.log(blob);
+
+                    /* document.getElementById('audio').innerHTML = '<source src="' + url  + '"type="video/webm"/>'//; */
+                }
+            }
+
+        });
+
+
+        function sendRecording() {
+            let blob = new Blob(chunks, { type: 'audio/mp3' });
+            blob.lastModifiedDate = new Date();
+            var file = new File([blob], "blob.mp3");
+            /* form = document.getElementById('form');
+            input = document.getElementById('file');
+            input.value = blob
+            form.submit(); */
+            var formData = new FormData();
+            formData.append("file", file);
+            formData.append("csrfmiddlewaretoken", $('input[name=csrfmiddlewaretoken]').val());
+            console.log(blob);
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', "{% url 'portf:recorded' metarial.id %}", true);
+            xhr.send(formData);
+
+            destroy();
+
+            var button = document.getElementById('send_voice');
+            button.classList.add("destroy");
+            
+        }
+
+        function destroy(){
+            var recordsend = document.getElementById('recordSend');
+            recordsend.classList.remove("destroy");
+            setTimeout(function () { restore(recordsend); }, 6000);
+        }
+
+        function restore(recordsend) {
+            recordsend.classList.add("destroy");
+        }
+    </script>
+</body>
+
+</html>

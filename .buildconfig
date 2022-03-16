@@ -1,0 +1,10 @@
+[default]
+name=Default
+runtime=host
+config-opts=
+run-opts=
+prefix=/home/rusian/.cache/gnome-builder/install/summer21.cse327.1.13/host
+app-id=
+postbuild=
+prebuild=
+default=true

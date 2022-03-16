@@ -1,0 +1,33 @@
+{% extends 'sign/index.html' %}
+
+{% block style %}
+<title>Classroom | Class</title>
+{% endblock %}
+
+{% block content %}
+
+<h2>{{ object.Class_name }}</h2>
+<h3>
+    {{ object.Subject }}
+</h3>
+{% for student in students %}
+<li>{{ student.First_name }} {{ student.Last_name }}
+    <h5>Email: {{ student.Email_address }}</h5>
+</li>
+
+{% endfor %}
+<hr>
+{% if not metarials %}
+<ul>
+    <li>No activity given Yet</li>
+</ul>
+{% else %}
+<ul>
+    {% for work in metarials %}
+    <li>{{ work.Description }} | {{ work.title }}</li>
+    <a href="{{ work.Pdf.url }}">pdf</a>
+    {% endfor %}
+</ul>
+{% endif %}
+<a href="{% url 'portf:pdf-create' object.id %}">Add Task</a>
+{% endblock %}

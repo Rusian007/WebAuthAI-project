@@ -1,0 +1,42 @@
+{% extends 'sign/index.html' %}
+
+{% load static %}
+{% block styles %}
+<link rel="stylesheet" href="{%  static  'css/regi.css'  %}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,600;1,500;1,600&display=swap" rel="stylesheet">
+
+{% endblock %}
+{% block content %}
+
+
+
+<header>
+
+    <main>
+    <section>
+    
+    <h3>Welcome to the Virtual Classroom</h3>
+    
+    <h1>Virtual Classroom <span class="change_content"></span></h1>
+    
+    <p> A collaborative web conferencing tool with online  <br> 
+     tutors who want to conduct highly interactive
+     live online teaching sessions.</p>
+     <a href ="{% url 'portf:student_register' %}" class="btnone"> Register as Student</a>
+    
+     <a href ="{% url 'portf:teacher_register' %}" class="btntwo"> Register as Teacher</a>
+    
+    
+    </section>
+    
+    </main>
+    
+    </nav>
+    
+    
+    </header>
+
+
+{% endblock %}

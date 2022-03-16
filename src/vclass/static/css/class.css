@@ -1,0 +1,64 @@
+a{
+    border-bottom: 2px solid rgba(0, 0, 0, 0);
+}
+.nav-item a:active{
+    border-bottom: 2px solid blue;
+}
+.nav-item a:focus{
+    border-bottom: 2px solid blue;
+}
+.nav-item a:target{
+    border-bottom: 2px solid blue;
+}
+.height{
+    height: 30vh;
+}
+.rounded-border{
+    border-radius: 10px;
+    border-bottom: 3px solid rgb(0, 204, 255);
+}
+.custom-border{
+    border: 2px solid rgb(230, 230, 230);
+    border-radius: 10px;
+    padding: 20px 20px;
+}
+.clickable{
+    transition:.6s;
+}
+.clickable:hover{
+    background-color: rgb(92, 92, 92) !important;
+    color: white !important;
+    cursor: pointer;
+}
+.absolute{
+    position: absolute;
+}
+.active{
+    border-bottom: 2px solid blue;
+}
+.image{
+    width: 60px;
+    border-radius: 50%;
+    height: 60px;
+}
+div h5{
+    margin-left: 10px;
+}
+.link-button{
+    border-radius: 30px;
+    padding: 5px 25px;
+    background-color: rgb(138, 138, 138);
+    color: white;
+}
+.back{
+    background: rgb(243, 243, 243) !important;
+    color: rgb(51, 51, 51);
+}
+.container .back p{
+    background-color: rgb(196, 196, 196);
+    height: 33px;
+    width: 33px;
+    border-radius: 50%;
+    text-align: center;
+    font-weight: bold;
+}

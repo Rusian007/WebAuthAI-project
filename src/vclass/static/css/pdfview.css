@@ -1,0 +1,244 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Roboto;
+}
+body{
+    overflow-y: hidden;
+}
+
+#pdfContainer {
+    width: 70vw;
+    height: 100vh;
+    overflow: auto;
+    background: rgb(49, 49, 49);
+    text-align: center;
+    
+}
+#canvas_container {
+    width: 70vw;
+    height: 90vh;
+    overflow: auto;
+    background: rgb(49, 49, 49);
+    text-align: center;
+    
+}
+#navigation_controls button {
+    border: 0;
+    outline: none;
+    padding: .7rem 1rem;
+    background-color: brown;
+    color: white;
+}
+.nav{
+    display: flex;
+    justify-content: space-between;
+    background-color: black;
+    padding: 1rem;
+    width: 100%;
+}
+
+#zoom_controls button{
+    font-family:Roboto;
+    display: inline;
+    border: none;
+    outline: none;
+    padding: .5rem;
+    background-color: brown;
+    color: white;
+}
+button:hover{
+    opacity: .8;
+}
+input[type=number]{
+    font-family: Roboto;
+    padding: .5rem;
+    width: 5%;
+    border: none;
+    border-radius: 5px;
+}
+/* width */
+
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px rgb(0, 0, 0);
+    border-radius: 2px;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: brown;
+    border-radius:2px;
+  }
+  .container{
+      display: flex;
+      justify-content: space-between;
+  }
+  .right-bar{
+      display: flex;
+      flex-direction: column;
+      padding-left: 30px ;
+      padding-top: .8rem ;
+     
+  }
+
+  .right-bar h2{
+      margin-top: 1rem;
+      margin-bottom: 2.6rem;
+  }
+  #input{
+      width: 90%;
+      height: 40px;  
+      transition: .6s;
+      padding: 10px;
+      border: 2px solid black;
+  }
+  #input:focus{
+      height: 120px;
+  }
+  .btn{
+      border: 0px;
+      outline: none;
+      background-color: brown;
+      color: white;
+      padding: 10px 15px;
+      transition: .6s;
+      text-decoration: none;
+  }
+  .btn:hover{
+    background-color: rgb(83, 0, 0);
+  }
+
+  @keyframes sliding {
+    0% { opacity: 1; left: -400px;  }
+    25% { left: 0px; opacity: 1; }
+    50% { left: 0px; opacity: 1;  }
+    75% { left: 0px; opacity: 1;  }
+    100% { left:-400px; }
+  }
+  .notification{
+      opacity: 0;
+      left: -400px;
+      position: absolute;
+      top: 80px;
+      padding: 15px;
+      background-color: teal;
+      color: white;
+      animation-iteration-count: 1;
+      animation-name: sliding;
+    animation-duration: 4s;
+  }
+  .notification2{
+      opacity: 0;
+      left: -400px;
+      position: absolute;
+      top: 80px;
+      padding: 15px;
+      font-size: 17px;
+      background-color: rgb(128, 0, 0);
+      color: white;
+      animation-iteration-count: 1;
+      animation-name: sliding;
+    animation-duration: 4s;
+  }
+
+  .btn-2{
+      margin-top: 10px;
+      width: 90%;
+    border: 0px;
+    outline: none;
+    background-color: brown;
+    color: white;
+    padding: 10px 15px;
+    transition: .6s;
+}
+.btn-2:hover{
+    background-color: rgb(83, 0, 0);
+}
+#value{
+    width: 18%;
+    border: 2px solid;
+    transition: .6s;
+}
+.hide{
+    opacity: 0;
+}
+.destroy{
+    display: none;
+}
+.flex-box{
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.signal{
+    width: 90%;
+    text-align: center;
+    background-color: teal;
+    padding: 3px;
+    color: white;
+    font-size: 13px;
+    
+}
+.pdf-content {
+    border: 1px solid #000000;
+}
+
+/* CSS classes used by TextLayerBuilder to style the text layer divs */
+
+/* This stuff is important! Otherwise when you select the text, the text in the divs will show up! */
+::selection { background:rgba(0,0,255,0.3); }
+::-moz-selection { background:rgba(0,0,255,0.3); }
+
+.textLayer {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    color: #000;
+    font-family: sans-serif;
+    overflow: hidden;
+}
+
+.textLayer > div {
+    color: transparent;
+    position: absolute;
+    line-height: 1;
+    white-space: pre;
+    cursor: text;
+}
+
+.textLayer .highlight {
+    margin: -1px;
+    padding: 1px;
+
+    background-color: rgba(180, 0, 170, 0.2);
+    border-radius: 4px;
+}
+
+.textLayer .highlight.begin {
+    border-radius: 4px 0px 0px 4px;
+}
+
+.textLayer .highlight.end {
+    border-radius: 0px 4px 4px 0px;
+}
+
+.textLayer .highlight.middle {
+    border-radius: 0px;
+}
+
+.textLayer .highlight.selected {
+    background-color: rgba(0, 100, 0, 0.2);
+}
+#current_page{
+    width: 13%;
+}

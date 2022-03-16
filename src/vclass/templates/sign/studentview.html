@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    {% block styles %}
+    <title>Classroom | Home</title>
+    <link rel="stylesheet" href="{%  static  'css/home.css'  %}">
+    {% endblock %}
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v3.0.6/css/line.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+    {% block content %}
+    <!-- Navbar added for flexing -->
+    <div class="navbar">
+        <div class="logo"><a style="text-decoration: none;" href="#">Classroom</a></div>
+
+        <!-- Flex-Wrep class for Display flex -->
+        <div class="flex-wrap">
+
+            <!-- Class Creation pop in -->
+            <div class="class">
+                <div class="center">
+                    <input type="checkbox" id="show">
+                    <label for="show" class="show-btn">Add <i style="margin-left: 6px;" class="fas fa-plus"></i></label>
+
+                    <div class="container">
+                        <label for="show" class="close-btn fas fa-times" title="close"></label>
+                        <div class="text">
+                            Join Class
+                        </div>
+                        <form method="post" action="{% url 'portf:class_join' %}">
+                            {% csrf_token %}
+                            <div class="data">
+                                <label>Class Code(******)</label>
+                                {{ form.code }}
+                                {{ form.code.errors }}
+                            </div>
+
+                            <div class="btn">
+                                <div class="inner"></div>
+                                <button><input type="submit" value="submit"></button>
+                            </div>
+                            <div class="cancel">
+                                Do want to Cancel? <a href="{% url 'portf:student-home' %}">Cancel</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- Class creation pop in ends -->
+
+            <!-- Sign up Button with logo -->
+            <div class="sign-up">
+
+                <a href="#" onClick="document.getElementById('logoutform').submit()"><button
+                        type="button">Logout<i
+                        style="margin-left: 6px;" class="fas fa-key"></i></button></a>
+
+                <form id="logoutform" method="POST" action="{% url 'portf:logout' %}">
+                    {% csrf_token %}
+                    <input type="hidden">
+                </form>
+            </div>
+            <!-- Sign up ends -->
+
+        </div>
+        <!-- Flex wrap ends -->
+
+    </div>
+    <!-- Navbar Ends -->
+
+
+    <input type="checkbox" id="btn2" hidden>
+    <label for="btn2" class="menu-btn2">
+       <i class="fas fa-arrow-left"></i>
+       <i class="fas fa-times"></i>
+    </label>
+    <!--########### Right bar starts ###########-->
+    <div class="right-bar">
+ 
+       <div class="avater">
+          <div class="intro">
+             <h3>Hello</h3>
+             <h2>{{ name }}</h2>
+          </div>
+          <div class="bar-image">
+             <img src="{{ student.image.url }}" alt="cat gif">
+          </div>
+          <!-- <img class="bar-image" src="https://media.giphy.com/media/v6aOjy0Qo1fIA/giphy.gif" alt="cat gif"> -->
+       </div>
+       <div class="hr">
+          <hr>
+       </div>
+       <div class="records">
+ 
+          <div class="student-count">
+             <h5></h5>
+             <h4></h4>
+          </div>
+ 
+          <div class="total-class">
+            <h5>Total Class</h5>
+            <h4>{{ count }}</h4>
+        </div>
+ 
+       </div>
+    </div>
+
+
+
+
+
+
+    <div class="wrapper">
+        <input type="checkbox" id="btn" hidden>
+        <label for="btn" class="menu-btn">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-times"></i>
+        </label>
+        <nav id="sidebar">
+            <div class="title">Classroom Features</div>
+            <ul class="list-items">
+                <li><a href="#"><i class="fas fa-home"></i>Classes</a></li>
+                <li><a href="https://www.timeanddate.com/calendar/"><i class="fas fa-sliders-h"></i>Calender</a></li>
+                <!-- <li><a href="#"><i class="fas fa-address-book"></i>Archived Classes</a></li> -->
+                <li><a href="#"><i class="fas fa-cog"></i>All Tasks</a></li>
+                <li><a href="{% url 'portf:student-profile' %}"><i class="fas fa-user"></i>Profile</a></li>
+
+            </ul>
+        </nav>
+    </div>
+
+
+    {% if class is None %}
+    <div class="content">
+        <div class="header">No classes here!</div>
+        <p>All your classes have been archived.<br>
+            You can Create them in the Classroom menu.</p>
+    </div>
+    {% else %}
+    <div class="classes">
+        {% for classes in class %}
+        <div class="card">
+            <div class="top">
+               <div class="container-card">
+                  <h4><b>{{ classes.Class_name }}</b></h4>
+                  <h5><i style="margin-right: 4px;color: #7ed321; font-size:20px;" class="fas fa-book"></i>
+                    {{ classes.Subject }}</h5>
+                  <p>{{ classes.section }}</p>
+                  
+   
+                  <a href='{{ classes.get_absolute_url }}'> <i style="font-size: 26px;" class="fas fa-location-arrow"></i> </a>
+               </div>
+            </div>
+         </div>
+        
+        {% endfor %}
+
+        <p></p>
+    </div>
+    {% endif %}
+
+
+    {% endblock %}

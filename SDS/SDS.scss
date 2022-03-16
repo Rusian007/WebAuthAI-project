@@ -1,0 +1,149 @@
+//Colors
+$base-color : rgb(235, 235, 235);
+$bg-yellow : rgb(221, 236, 0);
+$bg-blue : rgb(0, 106, 192);
+$margin-bottom: 120px;
+
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    background-color: $base-color;
+    font-family: Roboto,'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+}
+
+h1{
+    padding: .7rem;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+a{
+    text-decoration: none;
+    padding: 1px;
+    background-color: transparent;
+
+}
+
+.contents{
+    margin-right: 6rem;
+    margin-left: 26rem;
+   .right-bar{
+        position: fixed;
+        top: 100px;
+        left: 50px;
+        height: 20rem;
+        background-color: $bg-yellow;
+        padding: 1rem 2rem;
+
+        h3{
+            background-color: transparent;
+            margin-bottom: 5px;
+        }
+        ul{
+            background-color: transparent;
+            li{
+                background-color: transparent;
+                margin: 5px;
+            }
+        }
+    }
+
+    .left-bar{
+        .number{
+            font-weight: bold;
+            color: rgb(136, 2, 2);
+        }
+        h2{
+            padding-bottom: 15px;
+        }
+
+        .introduction{
+            margin-bottom: $margin-bottom;
+        }
+        
+        .implement{
+            margin-bottom: $margin-bottom;
+            
+            hr{
+                width: 100%;
+                border-bottom:none ;
+                border-top: 1px solid gray;
+            }
+           .header{
+               padding: 10px;
+               display: flex;
+           }
+           .special{
+            width: 200px;
+            margin-right: 20px;
+        }
+        .normal{
+            width: 180px;
+        }
+        .task{
+            display: flex;
+            padding: 11px;
+        }
+        }
+
+        .DDC{
+            margin-bottom: $margin-bottom;
+            p{
+                margin: 20px 1px;
+            }
+            b{
+                color: $bg-blue;
+            }
+        }
+
+        .HCD{
+            margin-bottom: $margin-bottom;
+            img{
+                width: 70%;
+            }
+        }
+
+
+        .class-diagram{
+            
+            margin-bottom: $margin-bottom;
+            img{
+                position: static;
+                width: 105%;
+                height: 100%;
+                margin-bottom: 100px;
+                transition: .5s;
+            }
+            img:hover{
+               width: 115%;
+            }
+
+            b{
+                color: $bg-blue;
+            }
+        }
+
+        .ER{
+            margin-bottom: $margin-bottom;
+            img{
+                width: 90%;
+            }
+            b{
+                color: $bg-blue;
+            }
+        }
+    }
+}
+
+@media print { 
+    /* All your print styles go here */
+    .right-bar{
+        display: none;
+    }
+    .contents{
+        margin: 0px;
+        padding: 5rem;
+    }
+   }

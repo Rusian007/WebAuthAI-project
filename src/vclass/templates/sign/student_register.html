@@ -1,0 +1,87 @@
+{% extends 'sign/index.html' %}
+
+{% load static %}
+{% block styles %}
+<link rel="stylesheet" href="{%  static  'css/registration.css'  %}">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+{% endblock %}
+{% block content %}
+
+<div class="container">
+
+
+    <div class="left-side">
+        <h1>Classroom</h1>
+        <h3>We are free. Forever.</h3>
+    </div>
+
+    <div class="right-side">
+        <h1 style="margin-bottom: 19px;">Student Sign up</h1>
+
+        <form action="{% url 'portf:student_register' %}" method="post" enctype="multipart/form-data" novalidate>
+            {% csrf_token %}
+
+            <div class="flex-wrap">
+
+                <label for="username">{{ form.username.label }}</label>
+                {{ form.username.errors }}
+                {{ form.username }}
+                
+
+                <div class="flex-label">
+                    <label for="first_name">{{ form.first_name.label }}</label>
+
+                    <label for="Last_name">{{ form.Last_name.label }}</label>
+
+                </div>
+                <div class="flex-label">
+                    {% if form.first_name.errors is not None  %}
+                    {{ form.first_name.errors }}
+
+                    {% elif form.Last_name.errors is not None %}
+                    {{ form.Last_name.errors }}
+
+                    {% endif %}
+                </div>
+
+                <div class="flex-input">
+                    {{ form.first_name }}
+                    {{ form.Last_name }}
+                </div>
+
+                <label for="Email">{{ form.Email.label }}</label>
+                {{ form.Email.errors }}
+                {{ form.Email }}
+
+                <div class="flex-label">
+                    <label for="password1">{{ form.password1.label }}</label>
+
+                    <label for="password2">{{ form.password2.label }}</label>
+                </div>
+                <div class="flex-label">
+                    {% if form.password2.errors is not None %}
+                    {{ form.password2.errors }}
+                    {% elif form.password1.errors is not None %}
+                    {{ form.password1.errors }}
+                    {% endif %}
+                </div>
+                <div class="flex-input">
+                    {{ form.password1}}
+                    {{ form.password2 }}
+                </div>
+            </div>
+            {{ form.Image.errors }}
+            <label for="file">Profile Picture</label>
+            {{ form.Image }}
+            {{ form.non_field_errors }}
+            <div class="input">
+                <input class="button" type="submit" name="signup_submit" value="Sign up" />
+                <a class="button" href="{% url 'portf:land' %}">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+{% endblock %}

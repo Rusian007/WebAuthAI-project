@@ -1,0 +1,36 @@
+
+.a form 
+{
+	
+	padding: 10px;
+  border: 3px dotted rgb(0, 0, 0);
+}
+.a{
+	padding-top: 20px;
+	padding-bottom: 50px;
+}
+.a input{ margin:5px; }
+
+.card{
+	border: 2px solid rgb(179, 179, 179);
+}
+.a h3{
+	margin-top: 10px;
+}
+.message{
+	position: absolute;
+	background: green;
+	color: white;
+	padding: 20px;
+	top: 20px;
+	right:0px;
+	transition: .7s;
+}
+#button{
+	margin-top: 10px;
+}
+.hide{
+    opacity: 0;
+}
+
+

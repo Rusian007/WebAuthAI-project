@@ -1,0 +1,52 @@
+{% extends 'sign/index.html' %}
+{% load static %}
+{% block styles %}
+<title>Classroom | Login</title>
+<link rel="stylesheet" href="{%  static  'css/form.css'  %}">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+{% endblock %}
+{% block content %}
+
+<div class="container">
+
+  <div class="left-side">
+    <h1 style="margin-bottom: 19px;">Login</h1>
+
+    <form action="#" method="post" >
+      {% csrf_token %}
+
+      <label for="username">{{ form.username.label }}</label>
+      {{ form.username.errors }}
+      {{ form.username }}
+
+      <label for="password">Password</label>
+      {{ form.password }}
+      {{ form.password.errors }}
+
+      <div class="input">
+        <input class="button" type="submit" name="signup_submit" value="Log in" />
+        <a class="button" href="{% url 'portf:land' %}">Cancel</a>
+      </div>
+      {% if messages %}
+<!-- Error Message -->
+{% for message in messages %}
+<li>{{ message }}</li>
+{% endfor %}
+{% endif %}
+    </form>
+
+  </div>
+
+  <div class="right-side">
+    <h1>Classroom</h1>
+    <h3>We are free. Forever.</h3>
+  </div>
+
+</div>
+
+
+
+
+
+
+{% endblock %}

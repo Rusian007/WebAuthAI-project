@@ -1,0 +1,67 @@
+{% extends 'sign/index.html' %}
+
+{% load static %}
+{% block styles %}
+    <title>Classroom | Create</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/pdf.css' %}">
+    {% endblock %}
+
+{% block content %}
+<div style="background-color: rgb(233, 233, 233);" class="page-wrapper p-t-100 p-b-50">
+    <div class="wrapper wrapper--w900">
+        <div class="card card-6">
+            <div class="card-heading">
+                <h2 class="title">Create a new task</h2>
+            </div>
+            <div class="card-body">
+                <form method="POST" id="taskform" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-row">
+                        <div class="name">Title</div>
+                        <div class="value">
+                            {{ form.title }}
+                            {{ form.title.errors }}
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="name">Due Date</div>
+                        <div class="value">
+                            <div class="input-group">
+                                {{ form.Submit_Date }}
+                                {{ form.Submit_Date.errors }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="name">Description</div>
+                        <div class="value">
+                            <div class="input-group">
+                                {{ form.Description }}
+                                {{ form.Description.errors }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="name">Upload Pdf</div>
+                        <div class="value">
+                            <div class="input-group js-input-file">
+                                {{ form.Pdf }}
+                                {{ form.Pdf.errors }}
+                            </div>
+                            <div class="label--desc">Upload your Pdf file here</div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer">
+                <a  href="#" onClick="document.getElementById('taskform').submit()"><button class="btn btn--radius-2"
+                    type="button">Add Task</button></a>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{% static 'css/js/jquery.min.js' %}"></script>
+<script src="{% static 'css/js/global.js' %}"></script>
+{% endblock %}

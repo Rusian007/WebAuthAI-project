@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="SDS.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Uchen&display=swap" rel="stylesheet">
+    <title>SDS</title>
+</head>
+
+<body>
+    <h1>Software Development Specification</h1>
+
+    <div class="contents">
+
+        <div class="right-bar">
+            <h3>Table of contents</h3>
+            <ul>
+                <li>
+                    <a href="#intro">Introduction</a>
+                </li>
+                <li>
+                    <a href="#Docs">Document Conventions</a>
+                </li>
+                <li>
+                    <a href="#DDC">Description of Design Components</a>
+                </li>
+                <li>
+                    <a href="#HCD">High-Level Component Design</a>
+                </li>
+                <li>
+                    <a href="#CD">Class diagrams</a>
+                </li>
+                <li>
+                    <a href="#ER">ER Diagrams</a>
+                </li>
+                <li>
+                    <a href="#imp">Implementation</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="left-bar">
+
+            <div id="intro" class="introduction">
+                <h2>Introduction</h2>
+                <p>This document will define the design of the virtual classroom. It contains specific information
+                    about the expected input, output, classes, and functions. We have implemented Web and Android Application for Virtual Classroom. It has many functionality for both students and teachers.
+                The purposes of this virtual classroom is To Keep the Students and Teachers Connected through a Virtual Platform. Through this app
+                student can join their class with class code and teacher can send class code by email. We can also apply AI implementation and others
+                advance functionality.</p>
+                    <br><br><br><br>
+                 <h2 id="Docs" >Document Conventions</h2>
+                <p> Certain words in the SDS are written in blue color font. This blue color represents any sublines or any description about the headline. </p>
+                <p> Document version 0.1 </p>
+                <p> Release Date 23rd Auguest 2021 </p>
+
+            </div>
+
+
+            <div id="DDC" class="DDC">
+
+                <h2>Description of Design Components</h2>
+                <p><b>Student and Teacher: </b> This is a key component. The main users are the Student and Teacher.
+                    Any outsider is not allowed. This contains the account selection which seperates who is who.
+                    Depending on this the profile will be created and they will be able access different functions.
+                </p>
+
+                <p><b>Profile: </b>A certain profile is set based on login information which contains each user's detail
+                    information (name, Email ,etc.). This profile is visible from the client side. User can also change
+                    their information anytime. </p>
+
+                <p><b>pdf handler: </b>Use this component to update, view and edit pdf files. Client side can use this
+                    component to upload pdf on the server.</p>
+
+                <p><b>User Authentication: </b>Checks User information is correct and allowes then to login or signup.
+                    Server side handles this operation. We use Django Auth to authenticate users.
+                </p>
+
+                <p><b>AI Face Recognition: </b>Artificial Intelligence checks if user is a Student or someone else.
+                    Server side handles this operation. We use Cmake and OpenCV to recognise user.
+                </p>
+
+                <p><b>Voice Recorder: </b>This is used to record voice from the system. Students are allowed to use this
+                    operation to
+                    record their voice which will be saved into the database.
+                </p>
+
+                <p><b>Android App: </b>An application in android phone connected to the server.
+                    Supposed to do everything that a user can to in website.
+                </p>
+
+                <p><b>REST API: </b>Allows us to manage/create GET or POST request from Android.</p>
+
+                <p><b>SQL Database: </b>MySQL database is used to store all the information in the server. This is also
+                    an important component.
+                    Our entire website depends on MYSQL database or their will be errors.
+
+                </p>
+            </div>
+
+            <div id="HCD" class="HCD">
+                <h2>High Level Component Design</h2>
+
+                <img src="img/component.svg" alt="Design Components">
+            </div>
+
+            <div id="CD" class="class-diagram">
+                <h2>Class Diagrams</h2>
+                <h3>.....Detailed Class Diagram(s): </h3>
+
+                <img src="img/Class diagram.svg" alt="Class Diagram">
+
+                <h3>.....Detailed Class Description(s): </h3>
+
+                <p> <span class="number">1. </span> <b>Class Name:</b> User <br>
+                    <b>Purpose: </b> To function a base classes for user which can be extended by subclasses(Student and
+                    Teacher) to a full implementation
+                    <b>public attributes: </b>
+                    <br>
+                    <li>+ is_Teacher : Boolean </li>
+                    <li>+ is_Student : Boolean </li>
+                    <br>
+                    <b>public methods: </b> <br>
+                    <span>Create_Student( ): void
+                        <b>purpose: </b>This creates a new Student</span>
+                    <br>
+                    <span>+ Create_teacher( ): void
+                        <b>purpose: </b>This method creates a new Teacher</span>
+
+                </p>
+                <br><br><br>
+
+                <p><span class="number">2. </span> <b>Class Name:</b> Student <br>
+                    <b>Purpose: </b> Construct student object with given fields
+                    <br>
+                    <b>Attributes: </b>
+                    <br>
+                    <li>- First_name : String</li>
+                    <li>- Last_name : String</li>
+                    <li>- image :</li>
+                    <li>- Email_address : String</li>
+                    <br>
+                    <b>public methods: </b> <br>
+                    <span>+ Create_Student( ): void
+                        <b>purpose: </b>Implements this method from User class.</span>
+                    <br>
+                    <span>+ get_name( ): String <br>
+                        + get_Email( ): String <br>
+                        + get_Picture( ): String <br>
+                        <b>purpose: </b>These are usual getter method.</span>
+
+                </p>
+                <br><br><br>
+
+                <p><span class="number">3. </span> <b>Class Name:</b> Teacher <br>
+                    <b>Purpose: </b> Construct teacher object with given fields
+                    <br>
+                    <b>Attributes: </b>
+                    <br>
+                    <li>- First_name : String</li>
+                    <li>- Last_name : String</li>
+                    <li>- Email_address : String</li>
+                    <br>
+                    <b>public methods: </b> <br>
+                    <span>+ Create_Teacher( ): void
+                        <b>purpose: </b>Implements this method from User class. Purpose stays the same.</span>
+                    <br>
+                    <span>+ get_name( ): String <br>
+                        + get_Email( ): String <br>
+                        <b>purpose: </b>These are usual getter method.</span>
+
+                </p>
+                <br><br><br>
+
+                <p><span class="number">4. </span> <b>Class Name:</b> Image_verify <br>
+                    <b>Purpose: </b> Construct object with given fields. This class is required to store the image of
+                    the students and verify them.
+                    <br>
+                    <b>Attributes: </b>
+                    <br>
+                    <li>- image_name : String</li>
+
+                    <br>
+                    <b>public methods: </b> <br>
+                    <span>+ get_image( ): String
+                        <b>purpose: </b> Usual getter method to return the name of the picture.
+                    </span>
+
+                </p>
+                <br><br><br>
+
+                <p><span class="number">5. </span> <b>Class Name:</b> Artificial Intelligence <br>
+                    <b>Purpose: </b> This class is required to make AI detect the student based on their picture.
+                    <br>
+                    <b>Attributes: </b>
+                    <br>
+                    <li>- Check : Boolaen</li>
+
+                    <br>
+                    <b>public methods: </b> <br>
+                    <span>+ Check_Student( ): Boolean
+                        <b>purpose: </b> Checks the that if a person is really a student or not, if yes the return true.
+                    </span>
+
+                </p>
+                <br><br><br>
+
+                <p><span class="number">6. </span> <b>Class Name:</b> Classroom <br>
+                    <b>Purpose: </b> The classroom. Here teacher and students can manage their classes.
+                    <br>
+                    <b>Attributes: </b>
+                    <br>
+                    <li>- Class_name : String</li>
+                    <li>- Subject : String</li>
+                    <li>- section : int</li>
+                    <li>- Invitation_code : String</li>
+
+                    <br>
+                    <b>public methods: </b> <br>
+                    <span>+ get_Class_Name( ): String
+                        <b>purpose: </b>Usual getter method, returns the name of the class
+                    </span>
+                    <br>
+                    <span>+ getSubject( ): String
+                        <b>purpose: </b> Returns the Subject of that particular Classroom object.
+                    </span>
+                    <br>
+                    <span>+ getsection( ): int
+                        <b>purpose: </b>Returns the section.
+                    </span>
+                    <br>
+                    <span>+ getCode( ): String
+                        <b>purpose: </b>Returns unique Invitation code for that classroom object.
+                     </span>
+
+                </p>
+                <br><br><br>
+
+                <p><span class="number">7. </span> <b>Class Name:</b> Create Classroom <br>
+                    <b>public methods: </b> <br>
+                    <span>+ create(String, String,int,String ): void
+                        <b>purpose: </b> This method handles the class creation and saves in the database. 
+                    </span>
+
+                </p>
+                <br><br><br>
+
+                <p><span class="number">8. </span> <b>Class Name:</b> Join Classroom <br>
+                    <b>public methods: </b> <br>
+                    <span>+ join(String): void
+                        <b>purpose: </b> This method handles Class join and also saves which student joins which class. This is called from Classroom class.
+                    </span>
+
+                </p>
+                <br><br><br>
+
+                <p><span class="number">9. </span> <b>Class Name:</b> Send Email <br>
+                    <b>public methods: </b> <br>
+                    <span>+ send_email(String): boolean
+                        <b>purpose: </b> This method is called from Classroom class to send E-mail. Takes in a Email address and sends it to the student. returns true if success.
+                    </span>
+
+                </p>
+                <br><br><br>
+
+                <p><span class="number">10. </span> <b>Class Name:</b> Upload Pdf <br>
+                    <br>
+                    <b>Attributes: </b>
+                    <br>
+                    <li>- Pdf_name : String</li>
+
+                    <br>
+                    <b>public methods: </b> <br>
+                    <span>+ Create_Pdf( ): boolean
+                        <b>purpose: </b> This method is called from Classroom class to Upload a new pdf file to the database and show it to the user. Returns True if success.
+                    </span>
+
+                </p>
+                <br><br><br>
+
+                <p><span class="number">11. </span> <b>Class Name:</b> Classroom Metarials <br>
+                    <b>Purpose: </b> Construct class materials with given fields. Stores them in the database.
+                    <br>
+                    <b>Attributes: </b>
+                    <br>
+                    <li>- title : String</li>
+                    <li>- Description : String</li>
+                    <li>- Submit_Date : Date</li>
+
+                    <br>
+                    <b>public methods: </b> <br>
+                    <span>+ new_metarial(String,String,Date): void
+                        <b>purpose: </b> Creates new class metarial for the Students.
+                    </span>
+                    <span>+ get_title( ): String
+                    </span> <br>
+                    <span>+ get_description( ): String
+                    </span> <br>
+                    <span>+ get_date( ): date
+                    </span> <br>
+                    <b>purpose: </b> Usual getter methods to return the required fields.
+
+
+                </p>
+                <br><br><br>
+
+                <p><span class="number">12. </span> <b>Class Name:</b>Questions <br>
+                    <b>Purpose: </b> Construct Questions with given fields. Stores them in the database.
+                    <br>
+                    <b>Attributes: </b>
+                    <br>
+                    <li>- Tag : String</li>
+                    <li>- Written : String</li>
+                    <li>- Voice : String</li>
+
+                    <br>
+                    <b>public methods: </b> <br>
+                    <span>+ new_Question(): void
+                        <b>purpose: </b> Student can create a Question about any class metarial. This method is required to do so.
+                    </span> <br>
+                    <span>+ getTag( ): String
+                    </span> <br>
+                    <span>+ getWritten( ): String
+                    </span> <br>
+                    <span>+ getVoice( ): String
+                    </span> <br>
+                    <b>purpose: </b> Usual getter methods to return the required fields.
+
+
+                </p>
+                <br><br><br>
+
+            </div>
+
+            <div id="ER" class="ER">
+                <h2>ER Diagram</h2>
+                <img src="img/er.png" alt="ER diagram">
+                <br><br><br><br><hr><br><br>
+                <h3>Table description and purposes </h3>
+                <br>
+                <p>
+                    <b>Image_verify: </b> Image_verify stores images of students, it has a relationship of one 
+                    to many with Student table.
+                </p>
+                <p>
+                    <b>User: </b> Stores necessary info about the users so we can identify which user has which rules easily.
+                    A user can either be a student or a teacher.
+                </p>
+                <p>
+                    <b>Student: </b> The Student table is required to store information about the students. Student is a user so it
+                    has a one to one relationship with User table.
+                </p>
+                <p>
+                    <b>Teacher: </b>Stores Teacher's information. This table contains detailed information about the teacher.
+                </p>
+                <p><b>Classroom: </b>Classroom has all the classroom information we need. A teacher can take many class.
+                    A class has many to many relationship with Student table. Because there can be many students in one class and
+                    one student in many class.
+                </p>
+                <p><b>Class_Metarials: </b>All the provided pdf files and classroom metarials will be store here so we van
+                easily access them. A class can have many metarials assigned.
+            </p>
+            <p><b>Questions: </b> Students can ask many question about any class metarials. So we will store their questions in this table.
+            Questions table has a one to many relationship with Questions table since there could be many questions about a certain class metarial </p>
+                
+            </div>
+
+            <div id="imp" class="implement">
+                <h2>Implementations</h2>
+                <hr>
+                <div class="header">
+
+                    <h4 class="normal">Workload</h4>
+                    <h4 class="special">Description</h4>
+                    <h4 class="normal">Assigned Members</h4>
+                    <h4 class="normal">Expected Date</h4>
+                    <h4 class="normal">Completed and released</h4>
+
+                </div>
+
+                <hr>
+                <div class="task">
+                    <div class="normal">Login Page</div>
+                    <div class="special">To create the login page design and integrate it to Django</div>
+                    <div class="normal">Tasnim Jannat</div>
+                    <div class="normal">2021/07/06</div>
+                    <div class="normal">2021/07/05</div>
+                </div>
+                <hr>
+                <div class="task">
+                    <div class="normal">Signup/registration page</div>
+                    <div class="special">To create the design for signup and implement it to Django</div>
+                    <div class="normal">Arafat Rahman</div>
+                    <div class="normal">2021/07/07</div>
+                    <div class="normal">2021/0707</div>
+                </div>
+                <hr>
+                <div class="task">
+                    <div class="normal">Homepage</div>
+                    <div class="special">The main homeview, creation of add class and create class popup buttons and
+                        sidebars</div>
+                    <div class="normal">Tasnim Hossain</div>
+                    <div class="normal">2021/07/11</div>
+                    <div class="normal">2021/07/11</div>
+                </div>
+                <hr>
+                <div class="task">
+                    <div class="normal">Class page design</div>
+                    <div class="special">designing the Class page where students will view their classes</div>
+                    <div class="normal">Tasnim Jannat</div>
+                    <div class="normal">2021/07/27?</div>
+                    <div class="normal">2021/07/26</div>
+                </div>
+                <hr>
+                <div class="task">
+                    <div class="normal">Class Detail page</div>
+                    <div class="special">to create the class page working buttons </div>
+                    <div class="normal">Tasnim Jannat</div>
+                    <div class="normal">2021/07/15</div>
+                    <div class="normal">2021/07/16</div>
+                </div>
+                <hr>
+                <div class="task">
+                    <div class="normal">Student info and profile</div>
+                    <div class="special">to make sure that students can change their profile and udate info</div>
+                    <div class="normal">Arafat Rahman</div>
+                    <div class="normal">2021/07/25</div>
+                    <div class="normal">2021/07/27</div>
+                </div>
+                <hr>
+                <div class="task">
+                    <div class="normal">Task view</div>
+                    <div class="special">Students can see their task as a list , design and implementation</div>
+                    <div class="normal">Arafat rahman</div>
+                    <div class="normal">2021/07/27</div>
+                    <div class="normal">2021/07/27</div>
+                </div>
+                <hr>
+                <div class="task">
+                    <div class="normal">Task add page</div>
+                    <div class="special">task add page design so that the teachers can add a task for the students</div>
+                    <div class="normal">Arafat Rahman</div>
+                    <div class="normal">2021/07/28</div>
+                    <div class="normal">2021/07/29</div>
+                </div>
+                <hr>
+                <div class="task">
+                    <div class="normal">pdf viewer,Question and voice record</div>
+                    <div class="special">A simple pdf viewer and voice recording in HTML and Django</div>
+                    <div class="normal">Arafat Rahman</div>
+                    <div class="normal">2021/08/01</div>
+                    <div class="normal">2021/08/08</div>
+                </div>
+                <hr>
+                <div class="task">
+                    <div class="normal">AI face Recognition</div>
+                    <div class="special">Face recognition with AI</div>
+                    <div class="normal">Arafat Rahman</div>
+                    <div class="normal">2021/8/10</div>
+                    <div class="normal">2021/8/11</div>
+                </div>
+                <hr>
+                <div class="task">
+                    <div class="normal">Android registration</div>
+                    <div class="special">Similar registration in android with Java</div>
+                    <div class="normal">Tasnim Hossain</div>
+                    <div class="normal">2021/07/31</div>
+                    <div class="normal">2021/08/05</div>
+                </div>
+                <hr>
+                <div class="task">
+                    <div class="normal">Android login </div>
+                    <div class="special">login XML for android and the main landing page</div>
+                    <div class="normal">Tasnim Hossain</div>
+                    <div class="normal">2021/07/31</div>
+                    <div class="normal">2021/08/03</div>
+                </div>
+                <hr>
+                <div class="task">
+                    <div class="normal">Android picture and post request</div>
+                    <div class="special">Picture uploading for android and post request with retrofit</div>
+                    <div class="normal">Tasnim Hossain</div>
+                    <div class="normal">2021/08/19</div>
+                    <div class="normal">pending</div>
+                </div>
+                <hr>
+                <div class="task">
+                    <div class="normal">Login verification</div>
+                    <div class="special">Verification for login in Android</div>
+                    <div class="normal">Tasnim Hossain</div>
+                    <div class="normal">2021/08/16</div>
+                    <div class="normal">2021/08/16</div>
+                </div>
+                <hr>
+                <div class="task">
+                    <div class="normal">SRS</div>
+                    <div class="special">software requirements specifications</div>
+                    <div class="normal">Tasnim hossain</div>
+                    <div class="normal">2021/07/18</div>
+                    <div class="normal">2021/07/18</div>
+                </div>
+                <hr>
+                <div class="task">
+                    <div class="normal">Rest api</div>
+                    <div class="special">completation of API with rest framework – </div>
+                    <div class="normal">Arafat Rahman</div>
+                    <div class="normal">2021/07/23</div>
+                    <div class="normal">2021/07/23</div>
+                </div>
+                <hr>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
